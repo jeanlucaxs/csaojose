@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colégio São José - Prudentópolis</title>
+    <style>
+        :root {
+            --azul-escuro: #003366;
+            --amarelo-ouro: #ffcc00;
+            --branco: #ffffff;
+            --cinza-claro: #f4f4f4;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; color: #333; line-height: 1.6; }
+        
+        /* Menu Superior - Acima do Nome */
+        .top-nav { 
+            background: var(--azul-escuro); 
+            padding: 10px 0; 
+            text-align: center;
+        }
+        .top-nav a { 
+            margin: 0 15px; 
+            text-decoration: none; 
+            color: white; 
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .top-nav a:hover { color: var(--amarelo-ouro); }
+
+        /* Cabeçalho com Nome da Escola */
+        header { 
+            background-color: var(--branco); 
+            color: var(--azul-escuro); 
+            padding: 30px 20px; 
+            text-align: center;
+            border-bottom: 3px solid var(--amarelo-ouro);
+        }
+        header h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; }
+
+        /* Botão Destaque Aluno */
+        .btn-aluno { 
+            background: var(--amarelo-ouro); 
+            color: var(--azul-escuro) !important; 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            font-weight: bold;
+        }
+
+        .hero { 
+            background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), url('https://via.placeholder.com/1200x400'); /* Substituir pela foto da fachada */
+            background-size: cover;
+            color: white; 
+            padding: 80px 20px; 
+            text-align: center; 
+        }
+
+        /* Seção de Parceiros (Estilo IVM) */
+        .parceiros-section { padding: 50px 20px; background: #fff; text-align: center; }
+        .parceiros-grid { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 40px; 
+            flex-wrap: wrap; 
+            margin-top: 30px;
+        }
+        .parceiros-grid img { 
+            max-width: 120px; 
+            filter: grayscale(100%); 
+            transition: 0.5s; 
+            opacity: 0.7;
+        }
+        .parceiros-grid img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+
+        footer { background: #222; color: white; padding: 40px 20px; text-align: center; }
+        .social-links a { color: white; margin: 0 10px; font-size: 20px; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html">INÍCIO</a>
+    <a href="#quem-somos">QUEM SOMOS</a>
+    <a href="#ensino">ENSINO</a>
+    <a href="#contato">CONTATO</a>
+    <a href="/aluno" class="btn-aluno">PORTAL DO ALUNO</a>
+</nav>
+
+<header>
+    <h1>Colégio São José</h1>
+    <p>Prudentópolis - PR</p>
+</header>
+
+<section class="hero">
+    <h2>Tradição e Tecnologia em um só lugar</h2>
+    <p>Educação que transforma gerações.</p>
+</section>
+
+<section class="parceiros-section">
+    <h3 style="color: #003366;">NOSSOS PARCEIROS</h3>
+    <div class="parceiros-grid">
+        <img src="https://logodownload.org/wp-content/uploads/2018/10/coc-logo.png" alt="COC">
+        <img src="https://static.wixstatic.com/media/067f53_48557997637841799787979.png" alt="ClassApp">
+        <img src="https://naveavela.com.br/wp-content/uploads/2021/03/logo-nave-a-vela.png" alt="Nave a Vela">
+        <img src="https://pleno.education/wp-content/uploads/2020/05/logo-pleno.png" alt="Pleno">
+    </div>
+</section>
+
+<footer>
+    <div class="social-links">
+        <a href="https://www.facebook.com/csaojose/?locale=pt_BR" target="_blank">Facebook</a> | 
+        <a href="https://www.instagram.com/saojose.colegio_oficial/" target="_blank">Instagram</a>
+    </div>
+    <p>Rua Cândido de Abreu, 1636 - Centro, Prudentópolis/PR</p>
+    <p>Telefone: (42) 3446-2212 | WhatsApp: (42) 99944-4378</p>
+</footer>
+
+</body>
+</html>
