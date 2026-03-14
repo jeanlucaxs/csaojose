@@ -10,6 +10,14 @@
         if (sessionStorage.getItem("logado_csj") !== "true") {
             window.location.href = "/csaojose/index.html";
         }
+
+        // FUNÇÃO DE REDIRECIONAMENTO DIRETO
+        function irPara(url) {
+            // Limpa a sessão antes de sair para não deixar rastro
+            sessionStorage.clear();
+            // Transforma a página atual no link de destino
+            window.location.href = url;
+        }
     </script>
 
     <style>
@@ -21,7 +29,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             background-color: var(--azul-marinho);
             color: white;
@@ -29,9 +37,10 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            padding-bottom: 20px;
         }
 
-        /* Barra de Usuário - Responsiva */
+        /* Barra Superior Responsiva */
         .user-bar {
             width: 100%;
             background: rgba(0, 0, 0, 0.3);
@@ -52,29 +61,21 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.8rem;
-            transition: 0.3s;
         }
 
-        h1 {
-            margin: 30px 0 10px 0;
-            font-size: 2rem;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+        h1 { margin: 30px 0 10px 0; font-size: 1.8rem; text-align: center; }
 
-        /* Card Central - Responsivo */
         .card-plataformas {
             background: white;
             color: #333;
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             width: 90%;
             max-width: 400px;
             text-align: center;
             margin: 20px 0;
             box-sizing: border-box;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
         .card-plataformas h3 {
@@ -83,78 +84,66 @@
             border-bottom: 2px solid var(--amarelo-ouro);
             padding-bottom: 10px;
             margin-bottom: 20px;
-            font-size: 1.2rem;
         }
 
-        .container-botoes {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
+        .container-botoes { display: grid; grid-template-columns: 1fr; gap: 12px; }
 
-        /* Botões de Link */
+        /* Botões de Acesso Direto */
         .btn-link {
             display: block;
-            padding: 14px;
-            text-decoration: none;
+            padding: 16px;
+            border: none;
             color: white;
             border-radius: 10px;
             font-weight: bold;
-            font-size: 1rem;
-            transition: transform 0.2s, filter 0.2s;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            font-family: inherit;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .btn-link:hover {
-            transform: scale(1.02);
-            filter: brightness(1.1);
-        }
+        .btn-link:active { transform: scale(0.96); filter: brightness(0.9); }
 
-        /* Cores Oficiais das Plataformas */
-        .classapp { background-color: #00b0ff; } /* Azul ClassApp */
+        /* Cores das Plataformas */
+        .classapp { background-color: #00b0ff; }
         .coc { background-color: #ff6600; }
         .nave { background-color: #20c997; }
         .pleno { background-color: #6610f2; }
         .genio { background-color: #f1c40f; color: #333; }
         .maralto { background-color: #3498db; }
 
-        /* Ajustes extras para telas muito pequenas */
-        @media (max-width: 360px) {
+        @media (max-width: 480px) {
             h1 { font-size: 1.5rem; }
-            .user-info { font-size: 0.8rem; }
-            .btn-link { padding: 12px; font-size: 0.9rem; }
+            .btn-link { padding: 14px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="user-bar">
-        <span class="user-info">Olá, <span id="nome-aluno">Aluno</span></span>
+        <span class="user-info">Aluno: <span id="nome-aluno"></span></span>
         <button class="btn-sair" onclick="sair()">SAIR</button>
     </div>
 
-    <h1>Área do Aluno</h1>
+    <h1>Portal do Aluno</h1>
 
     <div class="card-plataformas">
-        <h3>PLATAFORMAS DIGITAIS</h3>
+        <h3>ACESSAR PLATAFORMA</h3>
         
         <div class="container-botoes">
-            <a href="https://classapp.com.br/auth" target="_blank" class="btn-link classapp">ClassApp (Comunicação)</a>
-            
-            <a href="https://jornada.coc.com.br/painel/" target="_blank" class="btn-link coc">Apostila COC</a>
-            <a href="https://portal.naveavela.com.br/home" target="_blank" class="btn-link nave">Nave a Vela</a>
-            <a href="https://portal.programapleno.com.br/home" target="_blank" class="btn-link pleno">Programa Pleno</a>
-            <a href="https://portal.geniodasfinancas.com.br/home" target="_blank" class="btn-link genio">Gênio das Finanças</a>
-            <a href="https://portal.maralto.com.br/home" target="_blank" class="btn-link maralto">Portal Maralto</a>
+            <button onclick="irPara('https://classapp.com.br/auth')" class="btn-link classapp">ClassApp</button>
+            <button onclick="irPara('https://jornada.coc.com.br/painel/')" class="btn-link coc">Apostila COC</button>
+            <button onclick="irPara('https://portal.naveavela.com.br/home')" class="btn-link nave">Nave a Vela</button>
+            <button onclick="irPara('https://portal.programapleno.com.br/home')" class="btn-link pleno">Programa Pleno</button>
+            <button onclick="irPara('https://portal.geniodasfinancas.com.br/home')" class="btn-link genio">Gênio das Finanças</button>
+            <button onclick="irPara('https://portal.maralto.com.br/home')" class="btn-link maralto">Portal Maralto</button>
         </div>
     </div>
 
     <script>
-        // Recupera o nome do aluno salvo no login
-        const nome = sessionStorage.getItem("nome_aluno");
-        if (nome) {
-            document.getElementById("nome-aluno").innerText = nome;
-        }
+        document.getElementById("nome-aluno").innerText = sessionStorage.getItem("nome_aluno");
 
         function sair() {
             sessionStorage.clear();
