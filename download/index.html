@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+        }
+        h1 { font-size: 1.5rem; }
+        p { color: #666; font-size: 1rem; }
+        #manual-link { color: #003366; text-decoration: underline; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1>Obrigado por instalar!</h1>
+        <p>O download do aplicativo começou.</p>
+        <p style="font-size: 0.8rem; margin-top: 20px;">
+            Caso o download não tenha iniciado, 
+            <a id="download-link" href="colegiosaojoseprudentopolis.apk" download>clique aqui</a>.
+        </p>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Dispara o download automaticamente
+            const link = document.getElementById('download-link');
+            link.click();
+        };
+    </script>
+
+</body>
+</html>
