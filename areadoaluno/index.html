@@ -3,140 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Área do Aluno | CS São José</title>
-    
+    <title>Portal do Aluno | CS São José</title>
     <script>
-        // --- O VIGIA ---
-        // Se não houver registro de login, expulsa para o início imediatamente
         if (sessionStorage.getItem("logado_csj") !== "true") {
             window.location.href = "/csaojose/index.html";
         }
     </script>
-
     <style>
-        :root {
-            --azul-escuro: #000080;
-            --amarelo-ouro: #ffcc00;
-            --branco: #ffffff;
-            --vermelho-sair: #ff4d4d;
-        }
+        :root { --azul-marinho: #000080; --amarelo-ouro: #ffcc00; --branco: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--azul-marinho); color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        .user-bar { width: 100%; background: rgba(0, 0, 0, 0.2); padding: 10px 20px; display: flex; justify-content: flex-end; align-items: center; box-sizing: border-box; gap: 15px; }
+        .btn-sair { background-color: #ff4d4d; color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: var(--azul-escuro);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+        .card-plataformas { background: white; color: #333; padding: 25px; border-radius: 15px; width: 90%; max-width: 400px; text-align: center; margin-top: 30px; }
+        .card-plataformas h3 { color: var(--azul-marinho); border-bottom: 2px solid var(--amarelo-ouro); padding-bottom: 10px; }
 
-        /* Barra de Topo com Nome e Sair */
-        .user-bar {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            box-sizing: border-box;
-            gap: 15px;
-        }
-
-        .user-info {
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .btn-sair {
-            background-color: var(--vermelho-sair);
-            color: white;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-
-        .btn-sair:hover {
-            filter: brightness(1.2);
-        }
-
-        h1 {
-            margin-top: 40px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            font-size: 2.2rem;
-        }
-
-        /* Card Centralizado */
-        .card-plataformas {
-            background: white;
-            color: #333;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .card-plataformas h3 {
-            margin-top: 0;
-            color: var(--azul-escuro);
-            border-bottom: 2px solid var(--amarelo-ouro);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .container-botoes {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        /* Botões Menores das Apostilas/Plataformas */
-        .btn-link {
-            display: block;
-            padding: 12px;
-            text-decoration: none;
-            color: white;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            transition: transform 0.2s;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-        }
-
-        .btn-link:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
-
-        /* Cores customizadas */
+        .container-botoes { display: grid; gap: 12px; margin-top: 20px; }
+        .btn-link { display: block; padding: 12px; text-decoration: none; color: white; border-radius: 8px; font-weight: bold; transition: 0.2s; }
+        
         .coc { background-color: #ff6600; }
         .nave { background-color: #20c997; }
         .pleno { background-color: #6610f2; }
         .genio { background-color: #f1c40f; color: #333; }
         .maralto { background-color: #3498db; }
-
     </style>
 </head>
 <body>
 
     <div class="user-bar">
-        <span class="user-info">Aluno: <span id="nome-aluno">Carregando...</span></span>
-        <button class="btn-sair" onclick="fazerLogout()">SAIR</button>
+        <span>Aluno: <strong id="nome-aluno"></strong></span>
+        <button class="btn-sair" onclick="sair()">SAIR</button>
     </div>
 
     <h1>Portal do Aluno</h1>
 
     <div class="card-plataformas">
         <h3>PLATAFORMAS DIGITAIS</h3>
-        
         <div class="container-botoes">
             <a href="https://jornada.coc.com.br/painel/" target="_blank" class="btn-link coc">Apostila COC</a>
             <a href="https://portal.naveavela.com.br/home" target="_blank" class="btn-link nave">Nave a Vela</a>
@@ -147,19 +50,11 @@
     </div>
 
     <script>
-        // Pega o nome salvo no sessionStorage durante o login
-        const nomeGravado = sessionStorage.getItem("nome_aluno");
-        if (nomeGravado) {
-            document.getElementById("nome-aluno").innerText = nomeGravado;
-        }
-
-        function fazerLogout() {
-            // Limpa os dados de acesso
+        document.getElementById("nome-aluno").innerText = sessionStorage.getItem("nome_aluno");
+        function sair() {
             sessionStorage.clear();
-            // Volta para a página inicial
             window.location.href = "/csaojose/index.html";
         }
     </script>
-
 </body>
 </html>
