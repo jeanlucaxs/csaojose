@@ -7,9 +7,10 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root { --azul-escuro: #003366; --amarelo-ouro: #ffcc00; --branco: #ffffff; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; line-height: 1.6; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; color: #333; line-height: 1.6; }
         .top-nav { background: var(--azul-escuro); padding: 10px 0; text-align: center; }
-        .top-nav a { margin: 0 15px; text-decoration: none; color: white; font-weight: 500; font-size: 14px; }
+        .top-nav a { margin: 0 15px; text-decoration: none; color: white; font-weight: 500; font-size: 14px; transition: 0.3s; }
+        .top-nav a:hover { color: var(--amarelo-ouro); }
         header { background-color: var(--branco); color: var(--azul-escuro); padding: 30px 20px; text-align: center; border-bottom: 3px solid var(--amarelo-ouro); }
         .btn-aluno { background: var(--amarelo-ouro); color: var(--azul-escuro) !important; padding: 8px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; border: none; }
         .hero { background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), url('https://via.placeholder.com/1200x400'); background-size: cover; color: white; padding: 80px 20px; text-align: center; }
@@ -20,6 +21,7 @@
 <nav class="top-nav">
     <a href="index.html">INÍCIO</a>
     <a href="#quem-somos">QUEM SOMOS</a>
+    <a href="#ensino">ENSINO</a>
     <button onclick="abrirLogin()" class="btn-aluno">PORTAL DO ALUNO</button>
 </nav>
 
@@ -29,15 +31,12 @@
 </header>
 
 <section class="hero">
-    <h2>Tradição e Tecnologia</h2>
+    <h2>Tradição e Tecnologia em um só lugar</h2>
     <p>Educação que transforma gerações.</p>
 </section>
 
 <script>
     const CLIENT_ID = "1069428993928-li7i79sd5537v0gqolol4937p7vc3j5h.apps.googleusercontent.com";
-    
-    // LISTA DE ACESSO: Adicione os e-mails aqui
-    const EMAILS_PERMITIDOS = ["seu-email@gmail.com", "jeanlucaxs@gmail.com"];
 
     function abrirLogin() {
         google.accounts.id.initialize({
@@ -47,17 +46,27 @@
         google.accounts.id.prompt(); 
     }
 
-    function handleCredentialResponse(response) {
+    async function handleCredentialResponse(response) {
         const payload = JSON.parse(atob(response.credential.split('.')[1]));
-        
-        if (EMAILS_PERMITIDOS.includes(payload.email)) {
-            // Cria a "chave" na sessão do navegador
-            sessionStorage.setItem("logado_csj", "true");
-            sessionStorage.setItem("nome_aluno", payload.name);
-            // Redireciona para a pasta correta
-            window.location.href = "/csaojose/areadoaluno";
-        } else {
-            alert("Acesso Negado: O e-mail " + payload.email + " não está na lista de alunos.");
+        const emailLogado = payload.email;
+
+        try {
+            // Caminho exato para o seu JSON no GitHub
+            const resposta = await fetch('/csaojose/acessos/acessocsaojoseareaaluno.json');
+            const dados = await resposta.json();
+
+            const aluno = dados.alunos.find(a => a.email === emailLogado);
+
+            if (aluno) {
+                sessionStorage.setItem("logado_csj", "true");
+                sessionStorage.setItem("nome_aluno", aluno.nome);
+                window.location.href = "/csaojose/areadoaluno";
+            } else {
+                alert("Acesso Negado: O e-mail " + emailLogado + " não está autorizado.");
+            }
+        } catch (error) {
+            console.error("Erro:", error);
+            alert("Erro ao carregar lista de acessos.");
         }
     }
 </script>
