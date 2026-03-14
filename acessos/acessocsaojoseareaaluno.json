@@ -1,0 +1,7 @@
+{
+  "alunos": [
+    { "nome": "Jean Lucas", "email": "jeanlucaxs@gmail.com" },
+    { "nome": "Maria Silva", "email": "maria@gmail.com" },
+    { "nome": "João Aluno", "email": "joao@gmail.com" }
+  ]
+}
