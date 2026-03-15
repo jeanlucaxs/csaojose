@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal do Aluno | CS São José</title>
-    
     <style>
         :root {
             --azul-marinho: #000080;
@@ -23,12 +22,12 @@
             align-items: center;
             min-height: 100vh;
             padding-bottom: 20px;
-            visibility: hidden; /* Esconde a página até validar o login */
+            visibility: hidden; /* Segurança: só mostra após validar */
         }
 
         .user-bar {
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             padding: 12px 20px;
             display: flex;
             justify-content: space-between;
@@ -36,8 +35,8 @@
             box-sizing: border-box;
         }
 
-        .user-info { font-size: 0.9rem; font-weight: bold; }
-        .turma-tag { color: var(--amarelo-ouro); margin-left: 5px; font-style: italic; }
+        .user-info { font-size: 0.9rem; font-weight: bold; line-height: 1.2; }
+        .turma-tag { color: var(--amarelo-ouro); display: block; font-size: 0.8rem; font-style: italic; }
 
         .btn-sair {
             background-color: var(--vermelho);
@@ -49,17 +48,17 @@
             font-weight: bold;
         }
 
-        h1 { margin: 30px 0 10px 0; font-size: 1.8rem; text-align: center; }
+        h1 { margin: 25px 0 10px 0; font-size: 1.6rem; text-align: center; }
 
         .card-plataformas {
             background: white;
             color: #333;
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             width: 90%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
-            margin: 20px 0;
+            margin: 15px 0;
             box-sizing: border-box;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
@@ -70,23 +69,31 @@
             border-bottom: 2px solid var(--amarelo-ouro);
             padding-bottom: 10px;
             margin-bottom: 20px;
+            font-size: 1.1rem;
         }
 
-        .container-botoes { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .container-botoes { 
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+            width: 100%;
+        }
 
         .btn-link {
             display: block;
-            padding: 16px;
+            padding: 15px;
             border: none;
             color: white;
             border-radius: 10px;
             font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
+            font-size: 1rem;
             text-decoration: none;
+            box-sizing: border-box;
+            transition: 0.2s;
+            text-align: center;
         }
+
+        .btn-link:active { transform: scale(0.97); filter: brightness(0.9); }
 
         .classapp { background-color: #00b0ff; }
         .coc { background-color: #ff6600; }
@@ -95,18 +102,19 @@
         .genio { background-color: #f1c40f; color: #333; }
         .maralto { background-color: #3498db; }
 
-        @media (max-width: 480px) {
-            h1 { font-size: 1.5rem; }
+        @media (max-width: 400px) {
+            h1 { font-size: 1.3rem; }
+            .user-info { font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="user-bar">
-        <span class="user-info">
-            Aluno: <span id="nome-exibicao">Carregando...</span> 
+        <div class="user-info">
+            <span id="nome-exibicao">Carregando...</span> 
             <span id="turma-exibicao" class="turma-tag"></span>
-        </span>
+        </div>
         <button class="btn-sair" id="btn-logout">SAIR</button>
     </div>
 
@@ -142,7 +150,6 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // PROTEÇÃO REAL: Verifica se o usuário está logado no Firebase, não apenas no SessionStorage
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const email = user.email.toLowerCase();
@@ -150,26 +157,22 @@
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists() && docSnap.data().autorizado === true) {
-                    // Pega o nome e turma que VOCÊ editou no Firebase
                     const dados = docSnap.data();
                     document.getElementById("nome-exibicao").innerText = dados.nome || user.displayName;
-                    document.getElementById("turma-exibicao").innerText = dados.turma ? "| " + dados.turma : "";
-                    
-                    // Só mostra a página após confirmar tudo
+                    document.getElementById("turma-exibicao").innerText = dados.turma || "Turma não cadastrada";
                     document.body.style.visibility = "visible";
                 } else {
-                    alert("Acesso não autorizado no banco de dados.");
                     fazerLogout();
                 }
             } else {
-                window.location.href = "../portal/index.html";
+                window.location.href = window.location.origin + "/csaojose/portal/index.html";
             }
         });
 
         async function fazerLogout() {
             sessionStorage.clear();
             await signOut(auth);
-            window.location.href = "../portal/index.html";
+            window.location.href = window.location.origin + "/csaojose/portal/index.html";
         }
 
         document.getElementById("btn-logout").addEventListener("click", fazerLogout);
