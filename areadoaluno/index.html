@@ -5,21 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal do Aluno | CS São José</title>
     
-    <script>
-        // SEGURANÇA: Bloqueia acesso sem login
-        if (sessionStorage.getItem("logado_csj") !== "true") {
-            window.location.href = "/csaojose/index.html";
-        }
-
-        // FUNÇÃO DE REDIRECIONAMENTO DIRETO
-        function irPara(url) {
-            // Limpa a sessão antes de sair para não deixar rastro
-            sessionStorage.clear();
-            // Transforma a página atual no link de destino
-            window.location.href = url;
-        }
-    </script>
-
     <style>
         :root {
             --azul-marinho: #000080;
@@ -38,9 +23,9 @@
             align-items: center;
             min-height: 100vh;
             padding-bottom: 20px;
+            visibility: hidden; /* Esconde a página até validar o login */
         }
 
-        /* Barra Superior Responsiva */
         .user-bar {
             width: 100%;
             background: rgba(0, 0, 0, 0.3);
@@ -52,6 +37,7 @@
         }
 
         .user-info { font-size: 0.9rem; font-weight: bold; }
+        .turma-tag { color: var(--amarelo-ouro); margin-left: 5px; font-style: italic; }
 
         .btn-sair {
             background-color: var(--vermelho);
@@ -88,7 +74,6 @@
 
         .container-botoes { display: grid; grid-template-columns: 1fr; gap: 12px; }
 
-        /* Botões de Acesso Direto */
         .btn-link {
             display: block;
             padding: 16px;
@@ -100,13 +85,9 @@
             cursor: pointer;
             transition: 0.2s;
             width: 100%;
-            font-family: inherit;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
         }
 
-        .btn-link:active { transform: scale(0.96); filter: brightness(0.9); }
-
-        /* Cores das Plataformas */
         .classapp { background-color: #00b0ff; }
         .coc { background-color: #ff6600; }
         .nave { background-color: #20c997; }
@@ -116,40 +97,82 @@
 
         @media (max-width: 480px) {
             h1 { font-size: 1.5rem; }
-            .btn-link { padding: 14px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="user-bar">
-        <span class="user-info">Aluno: <span id="nome-aluno"></span></span>
-        <button class="btn-sair" onclick="sair()">SAIR</button>
+        <span class="user-info">
+            Aluno: <span id="nome-exibicao">Carregando...</span> 
+            <span id="turma-exibicao" class="turma-tag"></span>
+        </span>
+        <button class="btn-sair" id="btn-logout">SAIR</button>
     </div>
 
     <h1>Portal do Aluno</h1>
 
     <div class="card-plataformas">
         <h3>ACESSAR PLATAFORMA</h3>
-        
         <div class="container-botoes">
-            <button onclick="irPara('https://classapp.com.br/auth')" class="btn-link classapp">ClassApp</button>
-            <button onclick="irPara('https://jornada.coc.com.br/painel/')" class="btn-link coc">Apostila COC</button>
-            <button onclick="irPara('https://portal.naveavela.com.br/home')" class="btn-link nave">Nave a Vela</button>
-            <button onclick="irPara('https://portal.programapleno.com.br/home')" class="btn-link pleno">Programa Pleno</button>
-            <button onclick="irPara('https://portal.geniodasfinancas.com.br/home')" class="btn-link genio">Gênio das Finanças</button>
-            <button onclick="irPara('https://portal.maralto.com.br/home')" class="btn-link maralto">Portal Maralto</button>
+            <a href="https://classapp.com.br/auth" target="_blank" class="btn-link classapp">ClassApp</a>
+            <a href="https://jornada.coc.com.br/painel/" target="_blank" class="btn-link coc">Apostila COC</a>
+            <a href="https://portal.naveavela.com.br/home" target="_blank" class="btn-link nave">Nave a Vela</a>
+            <a href="https://portal.programapleno.com.br/home" target="_blank" class="btn-link pleno">Programa Pleno</a>
+            <a href="https://portal.geniodasfinancas.com.br/home" target="_blank" class="btn-link genio">Gênio das Finanças</a>
+            <a href="https://portal.maralto.com.br/home" target="_blank" class="btn-link maralto">Portal Maralto</a>
         </div>
     </div>
 
-    <script>
-        document.getElementById("nome-aluno").innerText = sessionStorage.getItem("nome_aluno");
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        function sair() {
+        const firebaseConfig = {
+            apiKey: "AIzaSyCcnBwm2IwglxZE21fW-bjFKsknCXN4shg",
+            authDomain: "csaojose.firebaseapp.com",
+            projectId: "csaojose",
+            storageBucket: "csaojose.firebasestorage.app",
+            messagingSenderId: "220432678945",
+            appId: "1:220432678945:web:808aad5fe6918f613e2360"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // PROTEÇÃO REAL: Verifica se o usuário está logado no Firebase, não apenas no SessionStorage
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const email = user.email.toLowerCase();
+                const docRef = doc(db, "usuarios_autorizados", email);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists() && docSnap.data().autorizado === true) {
+                    // Pega o nome e turma que VOCÊ editou no Firebase
+                    const dados = docSnap.data();
+                    document.getElementById("nome-exibicao").innerText = dados.nome || user.displayName;
+                    document.getElementById("turma-exibicao").innerText = dados.turma ? "| " + dados.turma : "";
+                    
+                    // Só mostra a página após confirmar tudo
+                    document.body.style.visibility = "visible";
+                } else {
+                    alert("Acesso não autorizado no banco de dados.");
+                    fazerLogout();
+                }
+            } else {
+                window.location.href = "../portal/index.html";
+            }
+        });
+
+        async function fazerLogout() {
             sessionStorage.clear();
-            window.location.href = "/csaojose/index.html";
+            await signOut(auth);
+            window.location.href = "../portal/index.html";
         }
-    </script>
 
+        document.getElementById("btn-logout").addEventListener("click", fazerLogout);
+    </script>
 </body>
 </html>
