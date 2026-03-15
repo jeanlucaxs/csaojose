@@ -12,6 +12,10 @@
         p { color: #666; font-size: 14px; margin-bottom: 25px; }
         #buttonDiv { display: flex; justify-content: center; cursor: pointer; transition: transform 0.2s; }
         #buttonDiv:hover { transform: scale(1.05); }
+        @media (max-width: 400px) {
+            .login-box { width: 85%; padding: 30px 20px; }
+            h2 { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -19,7 +23,6 @@
 <div class="login-box">
     <h2>Portal do Aluno</h2>
     <p>Acesse com sua conta autorizada</p>
-    
     <div id="buttonDiv">
         <img src="https://developers.google.com/static/identity/images/btn_google_signin_dark_normal_web.png" alt="Entrar com Google">
     </div>
@@ -36,8 +39,7 @@
         projectId: "csaojose",
         storageBucket: "csaojose.firebasestorage.app",
         messagingSenderId: "220432678945",
-        appId: "1:220432678945:web:808aad5fe6918f613e2360",
-        measurementId: "G-NCET103BDJ"
+        appId: "1:220432678945:web:808aad5fe6918f613e2360"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -46,45 +48,26 @@
 
     async function handleLogin() {
         const provider = new GoogleAuthProvider();
-        
         try {
             const result = await signInWithPopup(auth, provider);
-            // Convertemos para minúsculas para evitar erro de busca
             const email = result.user.email.toLowerCase().trim();
-            
-            console.log("Tentando acesso para:", email);
-
             const docRef = doc(db, "usuarios_autorizados", email);
             const docSnap = await getDoc(docRef);
 
-            if (docSnap.exists()) {
-                const dados = docSnap.data();
-                console.log("Documento encontrado! Dados:", dados);
-
-                if (dados.autorizado === true) {
-                    sessionStorage.setItem("logado_csj", "true");
-                    sessionStorage.setItem("nome_aluno", result.user.displayName);
-                    
-                    // Redirecionamento relativo para GitHub Pages
-                    window.location.href = ".../areadoaluno";
-                } else {
-                    console.warn("Usuário existe mas campo 'autorizado' é false.");
-                    alert("Acesso Negado: Sua conta está desativada.");
-                    await auth.signOut();
-                }
+            if (docSnap.exists() && docSnap.data().autorizado === true) {
+                sessionStorage.setItem("logado_csj", "true");
+                // Redirecionamento absoluto para evitar erro de pastas no GitHub
+                window.location.href = window.location.origin + "/csaojose/areadoaluno/index.html";
             } else {
-                console.error("ERRO: O e-mail '" + email + "' não foi encontrado na coleção 'usuarios_autorizados'. Verifique se o ID do documento é o e-mail.");
-                alert("Acesso Negado: E-mail não cadastrado.");
+                alert("Acesso Negado: E-mail não cadastrado ou desativado.");
                 await auth.signOut();
             }
         } catch (error) {
-            console.error("Erro detalhado do Firebase:", error);
-            alert("Falha na autenticação. Verifique sua conexão ou se o e-mail é válido.");
+            console.error(error);
+            alert("Falha na autenticação. Tente novamente.");
         }
     }
-
     document.getElementById("buttonDiv").addEventListener("click", handleLogin);
 </script>
-
 </body>
 </html>
