@@ -4,150 +4,440 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colégio São José | Prudentópolis</title>
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
     <style>
-        :root { --azul: #003366; --ouro: #ffcc00; --branco: #ffffff; --cinza: #f4f4f4; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; color: #333; overflow-x: hidden; }
-        
-        /* Navbar */
-        .header { 
-            position: fixed; top: 0; width: 100%; background: var(--branco); 
-            height: 80px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 8%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; box-sizing: border-box;
-        }
-        .logo { font-size: 1.8rem; font-weight: 800; color: var(--azul); text-decoration: none; }
-        .nav a { margin-left: 25px; text-decoration: none; color: var(--azul); font-weight: 600; font-size: 14px; }
-        .btn-portal { background: var(--azul); color: white !important; padding: 12px 25px; border-radius: 5px; }
-
-        /* Banner de Vídeo (Estilo Profissional) */
-        .hero { 
-            position: relative; height: 70vh; overflow: hidden; 
-            display: flex; justify-content: center; align-items: center; color: white; text-align: center;
-        }
-        .hero video { 
-            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; 
-            width: auto; height: auto; z-index: -1; transform: translate(-50%, -50%); object-fit: cover;
-        }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 51, 102, 0.4); z-index: 0; }
-        .hero-content { z-index: 1; padding: 20px; }
-        .hero h1 { font-size: 3.5rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-
-        /* Seções */
-        .section { padding: 60px 10%; text-align: center; }
-        .section h2 { color: var(--azul); font-size: 2.2rem; margin-bottom: 40px; }
-
-        /* Galeria de Fotos (Mural) */
-        .gallery { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 15px; margin-top: 20px; 
-        }
-        .gallery img, .gallery video { 
-            width: 100%; height: 200px; object-fit: cover; border-radius: 8px; 
-            transition: 0.3s; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .gallery img:hover { transform: scale(1.03); }
-
-        /* Cards de Ensino */
-        .grid-ensino { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--cinza); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .card h3 { color: var(--azul); margin-top: 0; }
-
-        footer { background: #111; color: white; padding: 50px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .nav a:not(.btn-portal) { display: none; }
-            footer { grid-template-columns: 1fr; text-align: center; }
-        }
+        :root { --brand-700: #0B5DBB; --brand-600: #1E6BDB; --brand-300: #60A5FA; --brand-200: #93C5FD; --brand-100: #DBEAFE; }
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg { background: linear-gradient(to bottom right, var(--brand-900), var(--brand-800), var(--brand-600)); }
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; z-index: 50; width: 256px; margin-top: 8px; border-radius: 24px; background: white; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-item { display: block; border-radius: 12px; padding: 12px 16px; font-size: 0.95rem; color: #374151; transition: background-color 0.2s; }
+        .dropdown-item:hover { background: var(--brand-50); color: var(--brand-700); }
+        .hero-animation { animation: fadeIn 4s ease-in-out infinite; }
+        @keyframes fadeIn { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     </style>
 </head>
-<body>
+<body class="min-h-screen bg-white text-gray-900">
 
-<header class="header">
-    <a href="#" class="logo">SÃO JOSÉ</a>
-    <nav class="nav">
-        <a href="#galeria">ESTRUTURA</a>
-        <a href="#ensino">ENSINO</a>
-        <a href="/csaojose/portal" class="btn-portal">PORTAL DO ALUNO</a>
-    </nav>
+<header class="border-b bg-white sticky top-0 z-50">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <div class="flex items-center">
+            <button class="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-gray-300 md:hidden">
+                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <a href="#" class="ml-2 flex shrink-0 items-center gap-3 md:ml-0" aria-label="Página inicial">
+                <img src="assets/logo.svg" alt="Logomarca do Colégio São José" class="h-10 w-auto md:h-12" loading="eager" width="144" height="48" draggable="false"/>
+                <div class="leading-none">
+                    <span class="block text-[10px] font-semibold tracking-[0.14em] text-gray-600 md:text-xs">COLÉGIO</span>
+                    <span class="block text-sm font-bold text-gray-900 md:text-lg lg:text-xl">SÃO JOSÉ</span>
+                </div>
+            </a>
+        </div>
+        <nav aria-label="principal" class="hidden items-center gap-6 text-sm md:flex">
+            <div class="dropdown">
+                <button class="inline-flex items-center gap-1 rounded hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40">
+                    Institucional
+                    <svg class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.24 4.38a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Nossa História</a>
+                    <a class="dropdown-item" href="#">Nossa Filosofia</a>
+                    <a class="dropdown-item" href="#">Notícias</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="inline-flex items-center gap-1 rounded hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40">
+                    Ensino
+                    <svg class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.24 4.38a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Educação Infantil</a>
+                    <a class="dropdown-item" href="#">Ensino Fundamental</a>
+                    <a class="dropdown-item" href="#">Ensino Médio</a>
+                </div>
+            </div>
+            <a class="hover:text-blue-600" href="#">Matrículas</a>
+            <a class="hover:text-blue-600" href="#">Agendamento</a>
+            <a class="hover:text-blue-600" href="#">Contato</a>
+            <a href="/csaojose/portal" class="inline-flex items-center gap-2 rounded-full border border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-50">PORTAL DO ALUNO</a>
+        </nav>
+        <a href="#" class="inline-flex items-center gap-2 rounded-full border border-blue-600 px-3 py-1 text-blue-600 md:hidden">
+            <svg viewBox="0 0 24 24" class="h-4 w-4">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"></path>
+            </svg>
+            <span class="font-medium">WhatsApp</span>
+        </a>
+    </div>
 </header>
-
-<section class="hero">
-    <video autoplay muted loop playsinline>
-        <source src="midias/21.mp4" type="video/mp4">
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1>Excelência que Tradição Constrói</h1>
-        <p>O melhor caminho para o futuro do seu filho em Prudentópolis.</p>
+<section id="noticias" class="relative overflow-hidden bg-gray-200 scroll-mt-24 md:scroll-mt-28">
+    <div class="pointer-events-none absolute inset-x-0 top-0" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" class="h-[75px] w-full md:h-[90px]" preserveAspectRatio="none">
+            <path d="M0,0 L0,60 C260,120 840,5 1440,75 L1440,0 Z" fill="#ffffff"></path>
+        </svg>
     </div>
-</section>
-
-<section id="galeria" class="section">
-    <h2>Nossa Estrutura</h2>
-    <div class="gallery">
-        <img src="midias/1.jpeg" alt="Quadra">
-        <img src="midias/2.jpeg" alt="Pátio">
-        <img src="midias/3.jpeg" alt="Área Externa">
-        <img src="midias/4.jpeg" alt="Playground">
-        <img src="midias/5.jpeg" alt="Espaço Kids">
-        <video muted loop onmouseover="this.play()" onmouseout="this.pause()">
-            <source src="midias/19.mp4" type="video/mp4">
-        </video>
-    </div>
-</section>
-
-<section id="ensino" class="section" style="background: var(--cinza);">
-    <h2>Níveis de Ensino</h2>
-    <div class="grid-ensino">
-        <div class="card">
-            <img src="midias/18.jpeg" alt="Educação Infantil">
-            <div class="card-body">
-                <h3>Educação Infantil</h3>
-                <p>Ambiente lúdico e seguro para os primeiros passos no aprendizado.</p>
+    <div class="relative mx-auto max-w-6xl px-4 pt-16 pb-24">
+        <div class="translate-y-6 md:translate-y-8 lg:translate-y-10">
+            <h2 class="text-xl md:text-2xl font-bold text-blue-700 uppercase">NOTÍCIAS SOBRE O COLÉGIO</h2>
+            <div class="mt-6 md:hidden">
+                <div class="grid items-start gap-5 grid-cols-1">
+                    <a href="#" class="group block">
+                        <div class="overflow-hidden rounded-2xl border bg-white shadow-sm mx-auto" style="width:100%">
+                            <div class="w-full overflow-hidden" style="height:232px">
+                                <img src="original_assets/Xadrez.webp" alt="Notícia 1" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="eager" decoding="async" width="1200" height="675" draggable="false"/>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 min-h-[64px] text-base font-semibold text-gray-900 group-hover:underline decoration-2 underline-offset-4">Notícia sobre o colégio</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 hidden md:block">
+                <div class="grid items-start gap-5 grid-cols-1 md:grid-cols-3">
+                    <a href="#" class="group block">
+                        <div class="overflow-hidden rounded-2xl border bg-white shadow-sm mx-auto" style="width:100%">
+                            <div class="w-full overflow-hidden" style="height:232px">
+                                <img src="midias/1.jpeg" alt="Notícia 1" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="eager" decoding="async" width="1200" height="675" draggable="false"/>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 min-h-[64px] text-base font-semibold text-gray-900 group-hover:underline decoration-2 underline-offset-4">Notícia 1</h3>
+                    </a>
+                    <a href="#" class="group block">
+                        <div class="overflow-hidden rounded-2xl border bg-white shadow-sm mx-auto" style="width:100%">
+                            <div class="w-full overflow-hidden" style="height:232px">
+                                <img src="original_assets/aluno-leitura.webp" alt="Notícia 2" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy" decoding="async" width="1200" height="675" draggable="false"/>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 min-h-[64px] text-base font-semibold text-gray-900 group-hover:underline decoration-2 underline-offset-4">Notícia 2</h3>
+                    </a>
+                    <a href="#" class="group block">
+                        <div class="overflow-hidden rounded-2xl border bg-white shadow-sm mx-auto" style="width:100%">
+                            <div class="w-full overflow-hidden" style="height:232px">
+                                <img src="original_assets/feira-ciencias.webp" alt="Notícia 3" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy" decoding="async" width="1200" height="675" draggable="false"/>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 min-h-[64px] text-base font-semibold text-gray-900 group-hover:underline decoration-2 underline-offset-4">Notícia 3</h3>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <img src="midias/11.jpeg" alt="Ensino Fundamental">
-            <div class="card-body">
-                <h3>Ensino Fundamental</h3>
-                <p>Base sólida com o sistema COC para o desenvolvimento acadêmico e humano.</p>
+        <a class="pointer-events-auto absolute left-1/2 bottom-20 -translate-x-1/2 rounded-full border border-blue-300/50 bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-sm transition hover:bg-blue-50" href="#">Ver todas as notícias</a>
+    </div>
+    <div class="pointer-events-none absolute inset-x-0 bottom-0" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" class="h-[75px] w-full md:h-[90px]" preserveAspectRatio="none">
+            <path d="M0,60 C260,120 840,5 1440,75 L1440,120 L0,120 Z" fill="#ffffff"></path>
+        </svg>
+    </div>
+</section>
+
+<section class="bg-white">
+    <div class="mx-auto max-w-6xl px-4 py-12">
+        <h2 class="text-xl md:text-2xl font-bold text-blue-700 uppercase">CONHEÇA AS NOSSAS CONQUISTAS</h2>
+    </div>
+    <div class="mx-auto max-w-6xl px-4 md:hidden">
+        <div class="grid items-start gap-6 grid-cols-1">
+            <div class="group block cursor-default">
+                <div class="overflow-hidden rounded-3xl border bg-white p-2 shadow-sm mx-auto" style="width:100%">
+                    <img src="original_assets/01.webp" alt="Conquista 01" class="w-full rounded-2xl object-cover" style="height:400px" loading="eager" decoding="async" width="1200" height="800" draggable="false"/>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <img src="midias/15.jpeg" alt="Ensino Médio">
-            <div class="card-body">
-                <h3>Ensino Médio</h3>
-                <p>Preparação intensiva para os melhores vestibulares do país.</p>
+    </div>
+    <div class="mx-auto max-w-6xl px-4 hidden md:block">
+        <div class="grid items-start gap-6 grid-cols-1 md:grid-cols-3">
+            <div class="group block cursor-default">
+                <div class="overflow-hidden rounded-3xl border bg-white p-2 shadow-sm mx-auto" style="width:100%">
+                    <img src="original_assets/01.webp" alt="Conquista 01" class="w-full rounded-2xl object-cover" style="height:400px" loading="eager" decoding="async" width="1200" height="800" draggable="false"/>
+                </div>
+            </div>
+            <div class="group block cursor-default">
+                <div class="overflow-hidden rounded-3xl border bg-white p-2 shadow-sm mx-auto" style="width:100%">
+                    <img src="original_assets/02.webp" alt="Conquista 02" class="w-full rounded-2xl object-cover" style="height:400px" loading="lazy" decoding="async" width="1200" height="800" draggable="false"/>
+                </div>
+            </div>
+            <div class="group block cursor-default">
+                <div class="overflow-hidden rounded-3xl border bg-white p-2 shadow-sm mx-auto" style="width:100%">
+                    <img src="original_assets/03.webp" alt="Conquista 03" class="w-full rounded-2xl object-cover" style="height:400px" loading="lazy" decoding="async" width="1200" height="800" draggable="false"/>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section">
-    <h2>Vida no Colégio</h2>
-    <div class="gallery">
-        <img src="midias/6.jpg" alt="Aula">
-        <img src="midias/7.jpeg" alt="Atividade">
-        <img src="midias/8.jpeg" alt="Biblioteca">
-        <img src="midias/9.jpeg" alt="Laboratório">
-        <img src="midias/10.jpeg" alt="Evento">
-        <img src="midias/12.jpeg" alt="Alunos">
+<section class="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+    <div class="pointer-events-none absolute inset-x-0 top-0" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" class="h-[75px] w-full md:h-[90px]" preserveAspectRatio="none">
+            <path d="M0,0 L0,60 C260,120 840,5 1440,75 L1440,0 Z" fill="#ffffff"></path>
+        </svg>
+    </div>
+    <div class="relative mx-auto max-w-6xl px-4 pt-16 pb-14 md:pt-20 md:pb-16">
+        <div class="relative grid items-center gap-8 rounded-3xl bg-white/10 p-6 backdrop-blur-sm ring-1 ring-white/15 md:grid-cols-2 md:p-8">
+            <div class="text-white">
+                <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+                    <span class="h-2.5 w-2.5 rounded-full bg-blue-300"></span>Atendimento humano e rápido
+                </span>
+                <h3 class="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">Ficou alguma dúvida? <br/> Fale com a nossa central.</h3>
+                <p class="mt-3 text-white/90">Nossa equipe está pronta para ajudar com matrículas, visitas e informações gerais.</p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <a href="#" class="inline-flex items-center gap-2 rounded-full bg-blue-300 px-5 py-3 font-semibold text-blue-900 shadow-lg transition hover:bg-blue-200">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"></path>
+                        </svg>
+                        WhatsApp agora
+                    </a>
+                    <a class="rounded-full border border-white/30 bg-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/20" href="#">Outras formas de contato</a>
+                </div>
+                <div class="mt-4 flex flex-wrap gap-2 text-xs text-white/80">
+                    <span class="rounded-full bg-white/10 px-3 py-1">Tempo médio de resposta &lt; 1h</span>
+                    <span class="rounded-full bg-white/10 px-3 py-1">Horário comercial</span>
+                    <span class="rounded-full bg-white/10 px-3 py-1">Equipe especializada</span>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="mx-auto w-full h-[260px] md:h-[320px] rounded-3xl overflow-hidden shadow-lg">
+                    <img src="original_assets/colegio.webp" alt="Fachada do Colégio São José" class="h-full w-full object-cover select-none" loading="lazy" decoding="async" width="1200" height="800" draggable="false"/>
+                </div>
+                <svg class="pointer-events-none absolute -left-3 -top-3 h-20 w-20 opacity-60" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="40" stroke="#60A5FA" stroke-dasharray="4 10" stroke-width="4"></circle>
+                </svg>
+                <svg class="pointer-events-none absolute -right-4 bottom-2 h-16 w-16 opacity-60" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="28" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6"></circle>
+                </svg>
+            </div>
+        </div>
     </div>
 </section>
 
-<footer>
-    <div>
-        <h3>Colégio São José</h3>
-        <p>Rua Cândido de Abreu, 1636<br>Centro - Prudentópolis - PR</p>
+<section class="relative overflow-hidden hero-bg">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600"></div>
+    <div class="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-20 lg:py-24">
+        <div class="relative mx-auto aspect-square w-[320px] md:w-[420px] lg:w-[520px]">
+            <div class="md:hidden">
+                <img src="original_assets/mobile_aluno-01.webp" alt="Estudante 1 (mobile)" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="eager" width="800" height="800" draggable="false"/>
+                <img src="original_assets/mobile_aluna-02.webp" alt="Estudante 2 (mobile)" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
+                <img src="original_assets/mobile_aluno-03.webp" alt="Estudante 3 (mobile)" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 10px)) translateY(100px) scale(1.65);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
+            </div>
+            <div class="hidden md:block">
+                <img src="original_assets/aluno-01.webp" alt="Estudante 1 sorrindo" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(64px) scale(1.25);transform-origin:bottom center;" loading="eager" width="1000" height="1000" draggable="false"/>
+                <img src="original_assets/aluna-02.webp" alt="Estudante 2" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(66px) scale(1.25);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
+                <img src="original_assets/aluno-03.webp" alt="Estudante 3 animado" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + -90px)) translateY(220px) scale(1.75);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
+            </div>
+        </div>
+        <div class="text-white">
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide backdrop-blur">
+                <span class="h-2.5 w-2.5 rounded-full bg-blue-300"></span>Colégio São José
+            </span>
+            <h1 class="mt-3 text-[28px] font-extrabold leading-tight md:text-5xl">No Colégio São José, <span class="text-blue-300">tradição e inovação</span> andam juntas para formar estudantes preparados para o<span class="text-blue-300"> Mundo Real</span></h1>
+            <p class="mt-4 text-base md:text-lg text-white/90">Do Infantil ao Ensino Médio, com projetos, tecnologia e desenvolvimento socioemocional.</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+                <a href="#segmentos" class="rounded-full bg-blue-300 px-5 py-3 font-semibold text-blue-900 shadow-lg transition hover:bg-blue-200">Conheça os segmentos</a>
+                <a class="rounded-full border border-white/30 bg-white/10 px-5 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/20" href="#">Agendar uma visita</a>
+            </div>
+        </div>
     </div>
-    <div style="text-align: right;">
-        <p><strong>Fale Conosco:</strong></p>
-        <p>(42) 3446-2212</p>
-        <p>WhatsApp: (42) 99944-4378</p>
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-30" aria-hidden="true">
+        <svg viewBox="0 0 1440 140" xmlns="http://www.w3.org/2000/svg" class="h-[90px] w-full md:h-[110px] lg:h-[130px]" preserveAspectRatio="none">
+            <path d="M0,80 C320,140 920,10 1440,90 L1440,140 L0,140 Z" fill="#fff"></path>
+        </svg>
     </div>
+</section>
+
+<section id="segmentos" class="scroll-mt-24 md:scroll-mt-28">
+    <div class="mx-auto max-w-6xl px-4 py-12">
+        <h2 class="text-xl md:text-2xl font-bold text-blue-700 uppercase">NOSSOS SEGMENTOS</h2>
+        <div class="relative mt-6">
+            <div class="h-[3px] w-full rounded-full bg-blue-400"></div>
+            <div class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 grid grid-cols-3">
+                <span class="justify-self-center h-5 w-5 rounded-full bg-blue-400 ring-8 ring-blue-400/25"></span>
+                <span class="justify-self-center h-5 w-5 rounded-full bg-blue-400 ring-8 ring-blue-400/25"></span>
+                <span class="justify-self-center h-5 w-5 rounded-full bg-blue-400 ring-8 ring-blue-400/25"></span>
+            </div>
+        </div>
+        <div class="mt-8 grid gap-8 md:grid-cols-3">
+            <a class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
+                <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3l9 6-9 6-9-6 9-6Z"></path>
+                            <path d="M3 10.5V18l9 6 9-6v-7.5"></path>
+                        </svg>
+                        <h3 class="text-base md:text-lg font-semibold">Educação Infantil</h3>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-4">
+                    <p class="text-white/90 leading-relaxed">Aprender brincando em ambiente acolhedor e estimulante.</p>
+                </div>
+            </a>
+            <a class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
+                <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19h16M4 8h16M8 3h8M8 13h8"></path>
+                        </svg>
+                        <h3 class="text-base md:text-lg font-semibold">Ensino Fundamental</h3>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-4">
+                    <p class="text-white/90 leading-relaxed">Desenvolvimento de competências, leitura, escrita e matemática.</p>
+                </div>
+            </a>
+            <a class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
+                <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21v-8l9-5 9 5v8"></path>
+                            <path d="M9 22v-6h6v6"></path>
+                        </svg>
+                        <h3 class="text-base md:text-lg font-semibold">Ensino Médio</h3>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-4">
+                    <p class="text-white/90 leading-relaxed">Preparação para vestibulares e para a vida acadêmica.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="diferenciais" class="bg-white scroll-mt-24 md:scroll-mt-28">
+    <div class="mx-auto max-w-6xl px-4 py-12">
+        <h2 class="text-xl md:text-2xl font-bold text-blue-700 uppercase">NOSSOS DIFERENCIAIS</h2>
+        <div class="relative mt-6">
+            <div class="h-[3px] w-full rounded-full bg-blue-400"></div>
+            <div class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 grid grid-cols-4">
+                <span class="justify-self-center h-5 w-5 rounded-full bg-blue-400 ring-8 ring-blue-400/25"></span>
+                <span class="justify-self-center h-5 w-5 rounded-full bg-blue-400 ring-8 ring-blue-400/25"></span>
+                <span class="justify-self-center h-5 w-5 rounded-full bg-blue-400 ring-8 ring-blue-400/25"></span>
+                <span class="justify-self-center h-5 w-5 rounded-full bg-blue-400 ring-8 ring-blue-400/25"></span>
+            </div>
+        </div>
+        <div class="mt-8 grid gap-8 md:grid-cols-4">
+            <div class="group block rounded-3xl bg-blue-600/95 text-white shadow-lg ring-1 ring-blue-800/10">
+                <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10Z"></path>
+                        </svg>
+                        <h3 class="text-base md:text-lg font-semibold">Educação Socioemocional</h3>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-4">
+                    <p class="text-white/95 leading-relaxed">Desenvolvimento de empatia, autonomia e habilidades de convivência.</p>
+                </div>
+            </div>
+            <div class="group block rounded-3xl bg-blue-600/95 text-white shadow-lg ring-1 ring-blue-800/10">
+                <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 6h16v12H4Z"></path>
+                            <path d="M8 10h8M8 14h5"></path>
+                        </svg>
+                        <h3 class="text-base md:text-lg font-semibold">Sistema COC</h3>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-4">
+                    <p class="text-white/95 leading-relaxed">Material didático e avaliações integradas de alta performance.</p>
+                </div>
+            </div>
+            <div class="group block rounded-3xl bg-blue-600/95 text-white shadow-lg ring-1 ring-blue-800/10">
+                <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 10h18M3 14h18"></path>
+                            <path d="M12 6v12"></path>
+                        </svg>
+                        <h3 class="text-base md:text-lg font-semibold">Gênio das Finanças</h3>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-4">
+                    <p class="text-white/95 leading-relaxed">Projetos práticos de planejamento, consumo consciente e investimentos.</p>
+                </div>
+            </div>
+            <div class="group block rounded-3xl bg-blue-600/95 text-white shadow-lg ring-1 ring-blue-800/10">
+                <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path>
+                            <path d="M7.8 7.8l2.1 2.1M14.1 14.1l2.1 2.1M7.8 16.2l2.1-2.1M14.1 9.9l2.1-2.1"></path>
+                        </svg>
+                        <h3 class="text-base md:text-lg font-semibold">Maralto</h3>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-4">
+                    <p class="text-white/95 leading-relaxed">Promove a cultura do livro e da leitura para estudantes de todas as idades.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="border-t bg-white">
+    <div class="mx-auto grid max-w-6xl gap-6 px-4 py-8 md:grid-cols-3">
+        <div>
+            <a href="#" aria-label="Voltar para a página inicial">
+                <img src="assets/logo.svg" alt="Colégio São José" class="h-8 w-auto" loading="lazy" width="144" height="48" draggable="false"/>
+            </a>
+            <p class="mt-3 text-sm text-gray-600">Colégio São José — Educação para a vida.</p>
+            <div class="mt-4 flex items-center gap-3" aria-label="Redes sociais">
+                <a href="#" class="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-800 ring-2 ring-blue-300 text-blue-200 transition hover:-translate-y-0.5 hover:shadow-md">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor">
+                        <path d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.7 3 12 3 12 3s-6.7 0-8.7.4A4 4 0 0 0 .5 6.2 40.6 40.6 0 0 0 0 12a40.6 40.6 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.3 21 12 21 12 21s6.7 0 8.7-.4a4 4 0 0 0 2.8-2.8c.3-1.9.5-3.8.5-5.8s-.2-3.9-.5-5.8ZM9.8 15.5V8.5L15.5 12l-5.7 3.5Z"></path>
+                    </svg>
+                </a>
+                <a href="#" class="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-800 ring-2 ring-blue-300 text-blue-200 transition hover:-translate-y-0.5 hover:shadow-md">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                        <circle cx="12" cy="12" r="3.5"></circle>
+                        <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                </a>
+                <a href="#" class="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-800 ring-2 ring-blue-300 text-blue-200 transition hover:-translate-y-0.5 hover:shadow-md">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor">
+                        <path d="M13.5 21v-7h2.4l.4-3h-2.8V9.2c0-.9.3-1.5 1.6-1.5H16V5.1c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v3h2.1v7h3.4Z"></path>
+                    </svg>
+                </a>
+                <a href="#" class="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-800 ring-2 ring-blue-300 text-blue-200 transition hover:-translate-y-0.5 hover:shadow-md">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor">
+                        <path d="M21 8.6a6.9 6.9 0 0 1-4.6-1.7v6.2a5.9 5.9 0 1 1-5.9-5.9c.3 0 .6 0 .9.1v3a3 3 0 1 0 2.1 2.9V2h3a6.9 6.9 0 0 0 4.5 4.1V8.6Z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <nav aria-label="Institucional">
+            <h3 class="font-semibold text-blue-600">Institucional</h3>
+            <ul class="mt-3 space-y-2 text-sm">
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Notícias</a></li>
+            </ul>
+        </nav>
+        <nav aria-label="Contato">
+            <h3 class="font-semibold text-blue-600">Contato</h3>
+            <address class="mt-3 not-italic">
+                <ul class="space-y-2 text-sm">
+                    <li><a href="mailto:contato@colegiosaojose.net">contato@colegiosaojose.net</a></li>
+                    <li><a href="tel:+554234462212">(42) 3446-2212</a></li>
+                    <li><a href="https://wa.me/5542998276516">WhatsApp: (42) 99944-4378</a></li>
+                    <li><a href="#">Rua Cândido de Abreu, 1636 - Centro - Prudentópolis - PR</a></li>
+                    <li><a href="#">Fale conosco</a></li>
+                </ul>
+            </address>
+            <div class="mt-4 flex flex-wrap gap-2">
+                <a href="#" class="inline-flex items-center gap-2 rounded-full border border-blue-600 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-50">
+                    <svg viewBox="0 0 24 24" class="h-4 w-4">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"></path>
+                    </svg>
+                    WhatsApp
+                </a>
+                <a class="inline-flex items-center gap-2 rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-600" href="#">Agendar visita</a>
+            </div>
+        </nav>
+    </div>
+    <div class="border-t py-4 text-center text-xs text-gray-500">© 2026 Colégio São José — Todos os direitos reservados.</div>
 </footer>
 
 </body>
