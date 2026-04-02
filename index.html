@@ -6,16 +6,58 @@
     <title>Colégio São José | Prudentópolis</title>
     <link rel="stylesheet" href="https://cdn.tailwindcss.com">
     <style>
-        :root { --brand-700: #0B5DBB; --brand-600: #1E6BDB; --brand-300: #60A5FA; --brand-200: #93C5FD; --brand-100: #DBEAFE; }
-        body { font-family: 'Inter', sans-serif; }
-        .hero-bg { background: linear-gradient(to bottom right, var(--brand-900), var(--brand-800), var(--brand-600)); }
-        .dropdown { position: relative; }
-        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; z-index: 50; width: 256px; margin-top: 8px; border-radius: 24px; background: white; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        .dropdown:hover .dropdown-menu { display: block; }
-        .dropdown-item { display: block; border-radius: 12px; padding: 12px 16px; font-size: 0.95rem; color: #374151; transition: background-color 0.2s; }
-        .dropdown-item:hover { background: var(--brand-50); color: var(--brand-700); }
-        .hero-animation { animation: fadeIn 4s ease-in-out infinite; }
-        @keyframes fadeIn { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        :root {
+            --primary-blue: #0B5DBB;
+            --primary-blue-light: #1E6BDB;
+            --primary-blue-lighter: #60A5FA;
+            --primary-blue-lightest: #93C5FD;
+            --primary-blue-pale: #DBEAFE;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-background {
+            background: linear-gradient(to bottom right, var(--primary-blue), var(--primary-blue-light), var(--primary-blue-lighter));
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 50;
+            width: 256px;
+            margin-top: 8px;
+            border-radius: 24px;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-item {
+            display: block;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            color: #374151;
+            transition: background-color 0.2s;
+        }
+        .dropdown-item:hover {
+            background: var(--primary-blue-pale);
+            color: var(--primary-blue);
+        }
+        .hero-fade {
+            animation: fadeCycle 12s ease-in-out infinite;
+        }
+        @keyframes fadeCycle {
+            0%, 33% { opacity: 1; }
+            16.5%, 49.5% { opacity: 0.3; }
+            33.1%, 100% { opacity: 1; }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
@@ -87,42 +129,42 @@
             <h2 class="text-xl md:text-2xl font-bold text-blue-700 uppercase">NOTÍCIAS SOBRE O COLÉGIO</h2>
             <div class="mt-6 md:hidden">
                 <div class="grid items-start gap-5 grid-cols-1">
-                    <a href="#" class="group block">
+                    <article class="group block">
                         <div class="overflow-hidden rounded-2xl border bg-white shadow-sm mx-auto" style="width:100%">
                             <div class="w-full overflow-hidden" style="height:232px">
                                 <img src="original_assets/Xadrez.webp" alt="Notícia 1" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="eager" decoding="async" width="1200" height="675" draggable="false"/>
                             </div>
                         </div>
                         <h3 class="mt-6 min-h-[64px] text-base font-semibold text-gray-900 group-hover:underline decoration-2 underline-offset-4">Notícia sobre o colégio</h3>
-                    </a>
+                    </article>
                 </div>
             </div>
             <div class="mt-6 hidden md:block">
                 <div class="grid items-start gap-5 grid-cols-1 md:grid-cols-3">
-                    <a href="#" class="group block">
+                    <article class="group block">
                         <div class="overflow-hidden rounded-2xl border bg-white shadow-sm mx-auto" style="width:100%">
                             <div class="w-full overflow-hidden" style="height:232px">
                                 <img src="midias/1.jpeg" alt="Notícia 1" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="eager" decoding="async" width="1200" height="675" draggable="false"/>
                             </div>
                         </div>
                         <h3 class="mt-6 min-h-[64px] text-base font-semibold text-gray-900 group-hover:underline decoration-2 underline-offset-4">Notícia 1</h3>
-                    </a>
-                    <a href="#" class="group block">
+                    </article>
+                    <article class="group block">
                         <div class="overflow-hidden rounded-2xl border bg-white shadow-sm mx-auto" style="width:100%">
                             <div class="w-full overflow-hidden" style="height:232px">
                                 <img src="original_assets/aluno-leitura.webp" alt="Notícia 2" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy" decoding="async" width="1200" height="675" draggable="false"/>
                             </div>
                         </div>
                         <h3 class="mt-6 min-h-[64px] text-base font-semibold text-gray-900 group-hover:underline decoration-2 underline-offset-4">Notícia 2</h3>
-                    </a>
-                    <a href="#" class="group block">
+                    </article>
+                    <article class="group block">
                         <div class="overflow-hidden rounded-2xl border bg-white shadow-sm mx-auto" style="width:100%">
                             <div class="w-full overflow-hidden" style="height:232px">
                                 <img src="original_assets/feira-ciencias.webp" alt="Notícia 3" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy" decoding="async" width="1200" height="675" draggable="false"/>
                             </div>
                         </div>
                         <h3 class="mt-6 min-h-[64px] text-base font-semibold text-gray-900 group-hover:underline decoration-2 underline-offset-4">Notícia 3</h3>
-                    </a>
+                    </article>
                 </div>
             </div>
         </div>
@@ -141,30 +183,30 @@
     </div>
     <div class="mx-auto max-w-6xl px-4 md:hidden">
         <div class="grid items-start gap-6 grid-cols-1">
-            <div class="group block cursor-default">
+            <figure class="group block cursor-default">
                 <div class="overflow-hidden rounded-3xl border bg-white p-2 shadow-sm mx-auto" style="width:100%">
                     <img src="original_assets/01.webp" alt="Conquista 01" class="w-full rounded-2xl object-cover" style="height:400px" loading="eager" decoding="async" width="1200" height="800" draggable="false"/>
                 </div>
-            </div>
+            </figure>
         </div>
     </div>
     <div class="mx-auto max-w-6xl px-4 hidden md:block">
         <div class="grid items-start gap-6 grid-cols-1 md:grid-cols-3">
-            <div class="group block cursor-default">
+            <figure class="group block cursor-default">
                 <div class="overflow-hidden rounded-3xl border bg-white p-2 shadow-sm mx-auto" style="width:100%">
                     <img src="original_assets/01.webp" alt="Conquista 01" class="w-full rounded-2xl object-cover" style="height:400px" loading="eager" decoding="async" width="1200" height="800" draggable="false"/>
                 </div>
-            </div>
-            <div class="group block cursor-default">
+            </figure>
+            <figure class="group block cursor-default">
                 <div class="overflow-hidden rounded-3xl border bg-white p-2 shadow-sm mx-auto" style="width:100%">
                     <img src="original_assets/02.webp" alt="Conquista 02" class="w-full rounded-2xl object-cover" style="height:400px" loading="lazy" decoding="async" width="1200" height="800" draggable="false"/>
                 </div>
-            </div>
-            <div class="group block cursor-default">
+            </figure>
+            <figure class="group block cursor-default">
                 <div class="overflow-hidden rounded-3xl border bg-white p-2 shadow-sm mx-auto" style="width:100%">
                     <img src="original_assets/03.webp" alt="Conquista 03" class="w-full rounded-2xl object-cover" style="height:400px" loading="lazy" decoding="async" width="1200" height="800" draggable="false"/>
                 </div>
-            </div>
+            </figure>
         </div>
     </div>
 </section>
@@ -213,19 +255,19 @@
     </div>
 </section>
 
-<section class="relative overflow-hidden hero-bg">
+<section class="relative overflow-hidden hero-background">
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600"></div>
     <div class="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-20 lg:py-24">
         <div class="relative mx-auto aspect-square w-[320px] md:w-[420px] lg:w-[520px]">
             <div class="md:hidden">
-                <img src="original_assets/mobile_aluno-01.webp" alt="Estudante 1 (mobile)" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="eager" width="800" height="800" draggable="false"/>
-                <img src="original_assets/mobile_aluna-02.webp" alt="Estudante 2 (mobile)" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
-                <img src="original_assets/mobile_aluno-03.webp" alt="Estudante 3 (mobile)" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 10px)) translateY(100px) scale(1.65);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
+                <img src="original_assets/mobile_aluno-01.webp" alt="Estudante 1 (mobile)" class="hero-fade absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="eager" width="800" height="800" draggable="false"/>
+                <img src="original_assets/mobile_aluna-02.webp" alt="Estudante 2 (mobile)" class="hero-fade absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
+                <img src="original_assets/mobile_aluno-03.webp" alt="Estudante 3 (mobile)" class="hero-fade absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 10px)) translateY(100px) scale(1.65);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
             </div>
             <div class="hidden md:block">
-                <img src="original_assets/aluno-01.webp" alt="Estudante 1 sorrindo" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(64px) scale(1.25);transform-origin:bottom center;" loading="eager" width="1000" height="1000" draggable="false"/>
-                <img src="original_assets/aluna-02.webp" alt="Estudante 2" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(66px) scale(1.25);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
-                <img src="original_assets/aluno-03.webp" alt="Estudante 3 animado" class="hero-animation absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + -90px)) translateY(220px) scale(1.75);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
+                <img src="original_assets/aluno-01.webp" alt="Estudante 1 sorrindo" class="hero-fade absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(64px) scale(1.25);transform-origin:bottom center;" loading="eager" width="1000" height="1000" draggable="false"/>
+                <img src="original_assets/aluna-02.webp" alt="Estudante 2" class="hero-fade absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(66px) scale(1.25);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
+                <img src="original_assets/aluno-03.webp" alt="Estudante 3 animado" class="hero-fade absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + -90px)) translateY(220px) scale(1.75);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
             </div>
         </div>
         <div class="text-white">
@@ -259,7 +301,7 @@
             </div>
         </div>
         <div class="mt-8 grid gap-8 md:grid-cols-3">
-            <a class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
+            <article class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
                 <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
                     <div class="flex items-center gap-3">
                         <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
@@ -272,8 +314,8 @@
                 <div class="px-6 pb-6 pt-4">
                     <p class="text-white/90 leading-relaxed">Aprender brincando em ambiente acolhedor e estimulante.</p>
                 </div>
-            </a>
-            <a class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
+            </article>
+            <article class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
                 <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
                     <div class="flex items-center gap-3">
                         <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
@@ -285,8 +327,8 @@
                 <div class="px-6 pb-6 pt-4">
                     <p class="text-white/90 leading-relaxed">Desenvolvimento de competências, leitura, escrita e matemática.</p>
                 </div>
-            </a>
-            <a class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
+            </article>
+            <article class="group block rounded-3xl bg-blue-700/90 text-white shadow-lg ring-1 ring-white/10 transition hover:bg-blue-700" href="#">
                 <div class="rounded-3xl rounded-b-none bg-white/10 px-6 py-4">
                     <div class="flex items-center gap-3">
                         <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2">
@@ -299,7 +341,7 @@
                 <div class="px-6 pb-6 pt-4">
                     <p class="text-white/90 leading-relaxed">Preparação para vestibulares e para a vida acadêmica.</p>
                 </div>
-            </a>
+            </article>
         </div>
     </div>
 </section>
