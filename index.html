@@ -52,15 +52,14 @@
         }
         .hero-fade {
             opacity: 0;
-            animation: fadeCycle 12s ease-in-out infinite;
+            animation: fadeCycle 9s ease-in-out infinite;
         }
         .hero-slide-1 { animation-delay: 0s; }
-        .hero-slide-2 { animation-delay: 4s; }
-        .hero-slide-3 { animation-delay: 8s; }
+        .hero-slide-2 { animation-delay: 3s; }
+        .hero-slide-3 { animation-delay: 6s; }
         @keyframes fadeCycle {
-            0%, 8.33% { opacity: 1; }
-            11.66%, 33.33% { opacity: 0; }
-            100% { opacity: 0; }
+            0%, 22% { opacity: 1; }
+            25%, 100% { opacity: 0; }
         }
     </style>
 </head>
@@ -104,15 +103,17 @@
                     </svg>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Educação Infantil</a>
-                    <a class="dropdown-item" href="#">Ensino Fundamental</a>
-                    <a class="dropdown-item" href="#">Ensino Médio</a>
+                    <a class="dropdown-item" href="/infantil">Educação Infantil</a>
+                    <a class="dropdown-item" href="/fundamental-i">Ensino Fundamental I</a>
+                    <a class="dropdown-item" href="/fundamental-ii">Ensino Fundamental II</a>
+                    <a class="dropdown-item" href="/medio">Ensino Médio</a>
                 </div>
             </div>
-            <a class="hover:text-blue-600" href="#">Matrículas</a>
-            <a class="hover:text-blue-600" href="#">Agendamento</a>
-            <a class="hover:text-blue-600" href="#">Contato</a>
-            <a href="/csaojose/portal" class="inline-flex items-center gap-2 rounded-full border border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-50">PORTAL DO ALUNO</a>
+            <a class="hover:text-blue-600" href="/noticias">Notícias</a>
+            <a class="hover:text-blue-600" href="/matriculas">Matrículas</a>
+            <a class="hover:text-blue-600" href="/agendamento">Agendamento</a>
+            <a class="hover:text-blue-600" href="/contato">Contato</a>
+            <a class="inline-flex items-center gap-2 rounded-full border border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-50" href="/csaojose/portal">PORTAL DO ALUNO</a>
         </nav>
         <a href="#" class="inline-flex items-center gap-2 rounded-full border border-blue-600 px-3 py-1 text-blue-600 md:hidden">
             <svg viewBox="0 0 24 24" class="h-4 w-4">
@@ -296,6 +297,7 @@
 <section id="segmentos" class="scroll-mt-24 md:scroll-mt-28">
     <div class="mx-auto max-w-6xl px-4 py-12">
         <h2 class="text-xl md:text-2xl font-bold text-blue-700 uppercase">NOSSOS SEGMENTOS</h2>
+        <p class="mt-2 text-sm text-gray-700">Links rápidos: <a href="/infantil" class="text-blue-600 underline">Infantil</a>, <a href="/fundamental-i" class="text-blue-600 underline">Fundamental I</a>, <a href="/fundamental-ii" class="text-blue-600 underline">Fundamental II</a>, <a href="/medio" class="text-blue-600 underline">Médio</a>.</p>
         <div class="relative mt-6">
             <div class="h-[3px] w-full rounded-full bg-blue-400"></div>
             <div class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 grid grid-cols-3">
@@ -485,6 +487,48 @@
     </div>
     <div class="border-t py-4 text-center text-xs text-gray-500">© 2026 Colégio São José — Todos os direitos reservados.</div>
 </footer>
+
+<script>
+    const routeHash = {
+        '/noticias':'#noticias',
+        '/contato':'#contato',
+        '/matriculas':'#segmentos',
+        '/agendamento':'#contato',
+        '/ensino':'#segmentos',
+        '/infantil':'#segmentos',
+        '/fundamental-i':'#segmentos',
+        '/fundamental-ii':'#segmentos',
+        '/medio':'#segmentos'
+    };
+
+    function applyRoute() {
+        const path = window.location.pathname.replace(/\/$/, '').toLowerCase();
+        const target = routeHash[path];
+        if (target) {
+            const el = document.querySelector(target);
+            if (el) {
+                el.scrollIntoView({behavior:'smooth'});
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        applyRoute();
+
+        document.querySelectorAll('a[href^="/"]').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                const href = link.getAttribute('href').replace(/\/$/, '').toLowerCase();
+                if (routeHash[href]) {
+                    event.preventDefault();
+                    window.history.pushState(null, '', href);
+                    applyRoute();
+                }
+            });
+        });
+    });
+
+    window.addEventListener('popstate', applyRoute);
+</script>
 
 </body>
 </html>
