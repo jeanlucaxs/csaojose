@@ -1,13 +1,13 @@
 {
   "noticias": [
     {
-      "id": "noticia de numero 1",
-      "title": "tilo da noticia 1",
-      "date": "data da noticia 1",
-      "summary": "sumario da noticia 1",
+      "id": "torneio-xadrez",
+      "title": "Torneio de Xadrez Interescolar",
+      "date": "15 de Abril, 2026",
+      "summary": "Nossos alunos participaram do torneio interestadual de xadrez, conquistando o 2º lugar na categoria sub-15.",
       "image": "midias/noticias/Xadrez.webp",
-      "alt": "alt da noticia 1",
-      "link": "linkdanoticia1.com"
+      "alt": "Notícia sobre xadrez",
+      "link": "/noticias/torneio-xadrez/"
     },
     {
       "id": "projeto-leitura-2026",
@@ -16,7 +16,7 @@
       "summary": "Iniciamos o projeto anual de incentivo à leitura com atividades especiais e parcerias com bibliotecas locais.",
       "image": "midias/noticias/aluno-leitura.webp",
       "alt": "Notícia sobre leitura",
-      "link": "#"
+      "link": "/noticias/projeto-leitura-2026/"
     },
     {
       "id": "feira-ciencias-2026",
@@ -25,7 +25,7 @@
       "summary": "Nossos estudantes apresentaram projetos inovadores na feira municipal de ciências, conquistando três primeiros lugares.",
       "image": "midias/noticias/feira-ciencias.webp",
       "alt": "Notícia sobre feira de ciências",
-      "link": "#"
+      "link": "/noticias/feira-ciencias-2026/"
     },
     {
       "id": "resultados-enem-2025",
@@ -34,7 +34,7 @@
       "summary": "Nossos alunos do 3º ano obtiveram excelentes resultados no ENEM, com média acima da estadual.",
       "image": "midias/noticias/01.webp",
       "alt": "Notícia sobre conquistas",
-      "link": "#"
+      "link": "/noticias/resultados-enem-2025/"
     },
     {
       "id": "semana-cultural-2026",
@@ -43,7 +43,7 @@
       "summary": "Uma semana repleta de atividades culturais, apresentações artísticas e exposições dos trabalhos dos alunos.",
       "image": "midias/noticias/02.webp",
       "alt": "Notícia sobre atividades",
-      "link": "#"
+      "link": "/noticias/semana-cultural-2026/"
     },
     {
       "id": "laboratorio-informatica",
@@ -52,8 +52,7 @@
       "summary": "Inauguramos nosso novo laboratório de informática com equipamentos de última geração.",
       "image": "midias/noticias/03.webp",
       "alt": "Notícia sobre tecnologia",
-      "link": "#"
+      "link": "/noticias/laboratorio-informatica/"
     }
   ]
 }
-

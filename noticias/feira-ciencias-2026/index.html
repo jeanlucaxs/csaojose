@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feira de Ciências 2026 - Notícias | Colégio São José</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-blue: #0B5DBB;
+            --primary-blue-light: #1E6BDB;
+            --primary-blue-lighter: #60A5FA;
+            --primary-blue-lightest: #93C5FD;
+            --primary-blue-pale: #DBEAFE;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; z-index: 50; width: 256px; margin-top: 8px; border-radius: 24px; background: white; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-item { display: block; border-radius: 12px; padding: 12px 16px; font-size: 0.95rem; color: #374151; transition: background-color 0.2s; }
+        .dropdown-item:hover { background: var(--primary-blue-pale); color: var(--primary-blue); }
+    </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+<header class="border-b bg-white sticky top-0 z-50">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <div class="flex items-center">
+            <button class="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-gray-300 md:hidden">
+                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <a href="/" class="ml-2 flex shrink-0 items-center gap-3 md:ml-0" aria-label="Página inicial">
+                <img src="/assets/logo.svg" alt="Logomarca do Colégio São José" class="h-10 w-auto md:h-12" loading="eager" width="144" height="48" draggable="false"/>
+                <div class="leading-none">
+                    <span class="block text-[10px] font-semibold tracking-[0.14em] text-gray-600 md:text-xs">COLÉGIO</span>
+                    <span class="block text-sm font-bold text-gray-900 md:text-lg lg:text-xl">SÃO JOSÉ</span>
+                </div>
+            </a>
+        </div>
+        <nav aria-label="principal" class="hidden items-center gap-6 text-sm md:flex">
+            <div class="dropdown">
+                <button class="inline-flex items-center gap-1 rounded hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40">
+                    Institucional
+                    <svg class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.24 4.38a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/historia/">Nossa História</a>
+                    <a class="dropdown-item" href="/filosofia/">Nossa Filosofia</a>
+                    <a class="dropdown-item" href="/noticias/">Notícias</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="inline-flex items-center gap-1 rounded hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40">
+                    Ensino
+                    <svg class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.24 4.38a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/infantil/">Educação Infantil</a>
+                    <a class="dropdown-item" href="/fundamental-i/">Ensino Fundamental I</a>
+                    <a class="dropdown-item" href="/fundamental-ii/">Ensino Fundamental II</a>
+                    <a class="dropdown-item" href="/medio/">Ensino Médio</a>
+                </div>
+            </div>
+            <a class="hover:text-blue-600" href="/matriculas/">Matrículas</a>
+            <a class="hover:text-blue-600" href="/agendamento/">Agendamento</a>
+            <a class="hover:text-blue-600" href="/contato/">Contato</a>
+            <a href="/portal/" class="inline-flex items-center gap-2 rounded-full border border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-50">PORTAL DO ALUNO</a>
+        </nav>
+    </div>
+</header>
+<main class="mx-auto max-w-6xl px-4 py-12">
+    <div class="text-center mb-12">
+        <p class="text-sm font-semibold uppercase tracking-[0.24em] text-blue-700">Notícia</p>
+        <h1 class="mt-4 text-3xl md:text-4xl font-bold text-blue-700">Feira de Ciências 2026</h1>
+        <p class="mt-4 text-gray-600">5 de Abril, 2026</p>
+    </div>
+    <div class="grid gap-8 lg:grid-cols-[2fr_1fr]">
+        <article class="space-y-6">
+            <div class="overflow-hidden rounded-3xl border bg-white shadow-sm">
+                <img src="/midias/noticias/feira-ciencias.webp" alt="Notícia sobre feira de ciências" class="w-full object-cover" style="height:420px" loading="lazy" decoding="async" width="1200" height="800" draggable="false" />
+            </div>
+            <div class="rounded-3xl border bg-white p-8 shadow-sm">
+                <p class="text-gray-700 leading-relaxed">Nossos estudantes apresentaram projetos inovadores na feira municipal de ciências, conquistando três primeiros lugares.</p>
+            </div>
+            <a href="/noticias/" class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-blue-700 transition">Voltar para notícias</a>
+        </article>
+        <aside class="space-y-6">
+            <div class="rounded-3xl border bg-blue-50 p-6">
+                <h2 class="text-lg font-semibold text-blue-700 mb-3">Outras notícias</h2>
+                <ul class="space-y-3 text-sm text-gray-700">
+                    <li><a href="/noticias/torneio-xadrez/" class="hover:text-blue-600">Torneio de Xadrez Interescolar</a></li>
+<li><a href="/noticias/projeto-leitura-2026/" class="hover:text-blue-600">Projeto de Leitura 2026</a></li>
+<li><a href="/noticias/feira-ciencias-2026/" class="hover:text-blue-600">Feira de Ciências 2026</a></li>
+<li><a href="/noticias/resultados-enem-2025/" class="hover:text-blue-600">Resultados do ENEM 2025</a></li>
+<li><a href="/noticias/semana-cultural-2026/" class="hover:text-blue-600">Semana Cultural 2026</a></li>
+<li><a href="/noticias/laboratorio-informatica/" class="hover:text-blue-600">Novo Laboratório de Informática</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</main>
+<footer class="border-t bg-white mt-16">
+    <div class="mx-auto grid max-w-6xl gap-6 px-4 py-8 md:grid-cols-3">
+        <div>
+            <a href="/" aria-label="Voltar para a página inicial">
+                <img src="/assets/logo.svg" alt="Colégio São José" class="h-8 w-auto" loading="lazy" width="144" height="48" draggable="false"/>
+            </a>
+            <p class="mt-3 text-sm text-gray-600">Colégio São José — Educação para a vida.</p>
+        </div>
+        <div>
+            <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-gray-500">Menu</h3>
+            <ul class="mt-4 space-y-2 text-sm text-gray-700">
+                <li><a href="/historia/" class="hover:text-blue-600">Nossa História</a></li>
+                <li><a href="/filosofia/" class="hover:text-blue-600">Nossa Filosofia</a></li>
+                <li><a href="/noticias/" class="hover:text-blue-600">Notícias</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-gray-500">Contato</h3>
+            <p class="mt-4 text-sm text-gray-700">R. Cândido de Abreu, 1636<br>Prudentópolis - PR</p>
+            <a href="/contato/" class="mt-3 inline-block text-sm text-blue-600 hover:underline">Fale conosco</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
