@@ -165,14 +165,14 @@
                     fazerLogout();
                 }
             } else {
-                window.location.href = window.location.origin + "/csaojose/portal/index.html";
+                window.location.href = window.location.origin + "/portal/index.html";
             }
         });
 
         async function fazerLogout() {
             sessionStorage.clear();
             await signOut(auth);
-            window.location.href = window.location.origin + "/csaojose/portal/index.html";
+            window.location.href = window.location.origin + "/portal/index.html";
         }
 
         document.getElementById("btn-logout").addEventListener("click", fazerLogout);
