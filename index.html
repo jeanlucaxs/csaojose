@@ -65,7 +65,7 @@
 <header class="border-b bg-white sticky top-0 z-50">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <div class="flex items-center">
-            <button class="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-gray-300 md:hidden">
+            <button id="mobile-menu-button" class="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-gray-300 md:hidden" aria-label="Abrir menu mobile" aria-expanded="false" aria-controls="mobile-nav">
                 <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -120,19 +120,47 @@
         </a>
     </div>
 </header>
+<div id="mobile-nav" class="fixed inset-0 z-40 hidden md:hidden">
+    <div id="mobile-nav-backdrop" class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+    <aside class="relative h-full w-[86%] max-w-xs overflow-y-auto bg-white shadow-xl">
+        <div class="flex items-center justify-between border-b px-4 py-3">
+            <span class="text-sm font-semibold text-gray-700">Menu</span>
+            <button id="mobile-nav-close" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-md ring-1 ring-gray-300" aria-label="Fechar menu">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 6l12 12M18 6L6 18"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="px-4 py-6 space-y-1">
+            <a href="/historia/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Nossa História</a>
+            <a href="/filosofia/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Nossa Filosofia</a>
+            <a href="/noticias/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Notícias</a>
+            <div class="border-t border-gray-200"></div>
+            <a href="/infantil/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Educação Infantil</a>
+            <a href="/fundamental-i/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Fundamental I</a>
+            <a href="/fundamental-ii/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Fundamental II</a>
+            <a href="/medio/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Ensino Médio</a>
+            <div class="border-t border-gray-200"></div>
+            <a href="/matriculas/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Matrículas</a>
+            <a href="/agendamento/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Agendamento</a>
+            <a href="/contato/" class="block rounded-2xl px-4 py-3 text-base font-medium text-gray-700 hover:bg-blue-50">Contato</a>
+            <a href="/portal/" class="block rounded-2xl bg-blue-600 px-4 py-3 text-base font-semibold text-white hover:bg-blue-700">Portal do Aluno</a>
+        </nav>
+    </aside>
+</div>
 <section class="relative overflow-hidden hero-background">
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600"></div>
     <div class="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-20 lg:py-24">
         <div class="relative mx-auto aspect-square w-[320px] md:w-[420px] lg:w-[520px]">
             <div class="md:hidden">
-                <img src="original_assets/mobile_aluno-01.webp" alt="Estudante 1 (mobile)" class="hero-fade hero-slide-1 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="eager" width="800" height="800" draggable="false"/>
-                <img src="original_assets/mobile_aluna-02.webp" alt="Estudante 2 (mobile)" class="hero-fade hero-slide-2 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
-                <img src="original_assets/mobile_aluno-03.webp" alt="Estudante 3 (mobile)" class="hero-fade hero-slide-3 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 10px)) translateY(100px) scale(1.65);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
+                <img src="midias/rodatefoto/mobile_aluno-01.webp" alt="Estudante 1 (mobile)" class="hero-fade hero-slide-1 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="eager" width="800" height="800" draggable="false"/>
+                <img src="midias/rodatefoto/mobile_aluna-02.webp" alt="Estudante 2 (mobile)" class="hero-fade hero-slide-2 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(70px) scale(1.35);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
+                <img src="midias/rodatefoto/mobile_aluno-03.webp" alt="Estudante 3 (mobile)" class="hero-fade hero-slide-3 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 10px)) translateY(100px) scale(1.65);transform-origin:bottom center;" loading="lazy" width="800" height="800" draggable="false"/>
             </div>
             <div class="hidden md:block">
-                <img src="original_assets/aluno-01.webp" alt="Estudante 1 sorrindo" class="hero-fade hero-slide-1 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(64px) scale(1.25);transform-origin:bottom center;" loading="eager" width="1000" height="1000" draggable="false"/>
-                <img src="original_assets/aluna-02.webp" alt="Estudante 2" class="hero-fade hero-slide-2 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(66px) scale(1.25);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
-                <img src="original_assets/aluno-03.webp" alt="Estudante 3 animado" class="hero-fade hero-slide-3 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + -90px)) translateY(220px) scale(1.75);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
+                <img src="midias/rodatefoto/aluno-01.webp" alt="Estudante 1 sorrindo" class="hero-fade hero-slide-1 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(64px) scale(1.25);transform-origin:bottom center;" loading="eager" width="1000" height="1000" draggable="false"/>
+                <img src="midias/rodatefoto/aluna-02.webp" alt="Estudante 2" class="hero-fade hero-slide-2 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + 0px)) translateY(66px) scale(1.25);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
+                <img src="midias/rodatefoto/aluno-03.webp" alt="Estudante 3 animado" class="hero-fade hero-slide-3 absolute bottom-0 left-1/2 w-auto max-w-full select-none object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,.35)]" style="height:100%;transform:translateX(calc(-50% + -90px)) translateY(220px) scale(1.75);transform-origin:bottom center;" loading="lazy" width="1000" height="1000" draggable="false"/>
             </div>
         </div>
         <div class="text-white">
@@ -294,109 +322,8 @@
         <div class="translate-y-6 md:translate-y-8 lg:translate-y-10">
             <h2 class="text-xl md:text-2xl font-bold text-blue-700 uppercase">NOTÍCIAS SOBRE O COLÉGIO</h2>
             <div class="mt-6">
-                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    <article class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="aspect-video overflow-hidden">
-                            <img src="midias/noticias/Xadrez.webp" alt="Notícia sobre xadrez" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="225" draggable="false"/>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-sm text-blue-600 font-medium mb-2">15 de Abril, 2026</div>
-                            <h2 class="text-xl font-bold text-gray-900 mb-3">Torneio de Xadrez Interescolar</h2>
-                            <p class="text-gray-600 mb-4">Nossos alunos participaram do torneio interestadual de xadrez, conquistando o 2º lugar na categoria sub-15.</p>
-                            <a href="#" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
-                                Ler mais
-                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="aspect-video overflow-hidden">
-                            <img src="midias/noticias/aluno-leitura.webp" alt="Notícia sobre leitura" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="225" draggable="false"/>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-sm text-blue-600 font-medium mb-2">10 de Abril, 2026</div>
-                            <h2 class="text-xl font-bold text-gray-900 mb-3">Projeto de Leitura 2026</h2>
-                            <p class="text-gray-600 mb-4">Iniciamos o projeto anual de incentivo à leitura com atividades especiais e parcerias com bibliotecas locais.</p>
-                            <a href="#" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
-                                Ler mais
-                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="aspect-video overflow-hidden">
-                            <img src="midias/noticias/feira-ciencias.webp" alt="Notícia sobre feira de ciências" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="225" draggable="false"/>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-sm text-blue-600 font-medium mb-2">5 de Abril, 2026</div>
-                            <h2 class="text-xl font-bold text-gray-900 mb-3">Feira de Ciências 2026</h2>
-                            <p class="text-gray-600 mb-4">Nossos estudantes apresentaram projetos inovadores na feira municipal de ciências, conquistando três primeiros lugares.</p>
-                            <a href="#" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
-                                Ler mais
-                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="aspect-video overflow-hidden">
-                            <img src="midias/noticias/01.webp" alt="Notícia sobre conquistas" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="225" draggable="false"/>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-sm text-blue-600 font-medium mb-2">1 de Abril, 2026</div>
-                            <h2 class="text-xl font-bold text-gray-900 mb-3">Resultados do ENEM 2025</h2>
-                            <p class="text-gray-600 mb-4">Nossos alunos do 3º ano obtiveram excelentes resultados no ENEM, com média acima da estadual.</p>
-                            <a href="#" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
-                                Ler mais
-                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="aspect-video overflow-hidden">
-                            <img src="midias/noticias/02.webp" alt="Notícia sobre atividades" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="225" draggable="false"/>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-sm text-blue-600 font-medium mb-2">28 de Março, 2026</div>
-                            <h2 class="text-xl font-bold text-gray-900 mb-3">Semana Cultural 2026</h2>
-                            <p class="text-gray-600 mb-4">Uma semana repleta de atividades culturais, apresentações artísticas e exposições dos trabalhos dos alunos.</p>
-                            <a href="#" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
-                                Ler mais
-                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="aspect-video overflow-hidden">
-                            <img src="midias/noticias/03.webp" alt="Notícia sobre tecnologia" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="225" draggable="false"/>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-sm text-blue-600 font-medium mb-2">20 de Março, 2026</div>
-                            <h2 class="text-xl font-bold text-gray-900 mb-3">Novo Laboratório de Informática</h2>
-                            <p class="text-gray-600 mb-4">Inauguramos nosso novo laboratório de informática com equipamentos de última geração.</p>
-                            <a href="#" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
-                                Ler mais
-                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-                </div>
+                <div id="news-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
+                <div id="news-error" class="hidden rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-700">Não foi possível carregar as notícias no momento. Atualize a página ou verifique o arquivo JSON.</div>
             </div>
         </div>
         <a class="pointer-events-auto absolute left-1/2 bottom-20 -translate-x-1/2 rounded-full border border-blue-300/50 bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-sm transition hover:bg-blue-50" href="/noticias/">Ver todas as notícias</a>
@@ -452,7 +379,7 @@
         </div>
         <div class="relative mx-auto aspect-square w-[320px] md:w-[420px] lg:w-[520px]">
             <div class="mx-auto w-full h-[260px] md:h-[320px] rounded-3xl overflow-hidden shadow-lg">
-                <img src="original_assets/colegio.webp" alt="Fachada do Colégio São José" class="h-full w-full object-cover select-none" loading="lazy" decoding="async" width="1200" height="800" draggable="false"/>
+                <img src="midias/rodatefoto/colegio.webp" alt="Fachada do Colégio São José" class="h-full w-full object-cover select-none" loading="lazy" decoding="async" width="1200" height="800" draggable="false"/>
             </div>
             <svg class="pointer-events-none absolute -left-3 -top-3 h-20 w-20 opacity-60" viewBox="0 0 100 100" fill="none">
                 <circle cx="50" cy="50" r="40" stroke="#60A5FA" stroke-dasharray="4 10" stroke-width="4"></circle>
@@ -552,8 +479,81 @@
         }
     }
 
+    function createNewsCard(item) {
+        const article = document.createElement('article');
+        article.className = 'bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition';
+        article.innerHTML = `
+            <div class="aspect-video overflow-hidden">
+                <img src="${item.image}" alt="${item.alt}" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="225" draggable="false" />
+            </div>
+            <div class="p-6">
+                <div class="text-sm text-blue-600 font-medium mb-2">${item.date}</div>
+                <h2 class="text-xl font-bold text-gray-900 mb-3">${item.title}</h2>
+                <p class="text-gray-600 mb-4">${item.summary}</p>
+                <a href="${item.link}" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700">
+                    Ler mais
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        `;
+        return article;
+    }
+
+    async function loadNews() {
+        try {
+            const response = await fetch('midias/midias.json');
+            if (!response.ok) throw new Error('JSON não encontrado');
+            const data = await response.json();
+            const newsGrid = document.getElementById('news-grid');
+            const errorBox = document.getElementById('news-error');
+
+            if (!data.noticias || data.noticias.length === 0) {
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            data.noticias.forEach(item => newsGrid.appendChild(createNewsCard(item)));
+        } catch (error) {
+            document.getElementById('news-error').classList.remove('hidden');
+            console.warn('Erro ao carregar notícias:', error);
+        }
+    }
+
+    function setupMobileMenu() {
+        const mobileButton = document.getElementById('mobile-menu-button');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileClose = document.getElementById('mobile-nav-close');
+        const mobileBackdrop = document.getElementById('mobile-nav-backdrop');
+
+        const toggleMobileMenu = () => {
+            const isOpen = !mobileNav.classList.contains('hidden');
+            mobileNav.classList.toggle('hidden');
+            mobileButton.setAttribute('aria-expanded', String(!isOpen));
+        };
+
+        if (mobileButton && mobileNav) {
+            mobileButton.addEventListener('click', toggleMobileMenu);
+        }
+        if (mobileClose) {
+            mobileClose.addEventListener('click', toggleMobileMenu);
+        }
+        if (mobileBackdrop) {
+            mobileBackdrop.addEventListener('click', toggleMobileMenu);
+        }
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.add('hidden');
+                mobileButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         applyRoute();
+        loadNews();
+        setupMobileMenu();
 
         document.querySelectorAll('a[href^="/"]').forEach((link) => {
             link.addEventListener('click', (event) => {
@@ -566,7 +566,6 @@
             });
         });
 
-        // Dropdown toggle
         document.querySelectorAll('.dropdown button').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
