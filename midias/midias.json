@@ -1,13 +1,13 @@
 {
   "noticias": [
     {
-      "id": "torneio-xadrez",
-      "title": "Torneio de Xadrez Interescolar",
-      "date": "15 de Abril, 2026",
-      "summary": "Nossos alunos participaram do torneio interestadual de xadrez, conquistando o 2º lugar na categoria sub-15.",
+      "id": "noticia de numero 1",
+      "title": "tilo da noticia 1",
+      "date": "data da noticia 1",
+      "summary": "sumario da noticia 1",
       "image": "midias/noticias/Xadrez.webp",
-      "alt": "Notícia sobre xadrez",
-      "link": "#"
+      "alt": "alt da noticia 1",
+      "link": "linkdanoticia1.com"
     },
     {
       "id": "projeto-leitura-2026",
